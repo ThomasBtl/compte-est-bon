@@ -1,0 +1,169 @@
+body {
+    font-family: 'Raleway';
+}
+
+#wrapper {
+    width: 30%;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #476C9B;
+    height: 126px;
+    background-color: rgba(71, 108, 155, 0.6);
+    border-radius: 5px;
+}
+
+.title-text {
+    font-size: 2.25rem;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid #707070;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.number-to-found {
+    font-size: 1.125rem;
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+.reset-button{
+    border: 2px solid #468C98;
+    background-color: rgba(70, 140, 152, 0.6);
+    padding: 0 20px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.give-up {
+    background-color: rgba(152, 68, 71, 0.6);
+    border: 2px solid #984447;
+}
+
+.game-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.equation-list {
+    width: 40%;
+    border: 2px solid #476C9B;
+    background-color: rgba(71, 108, 155, 0.6);
+    border-radius: 5px;
+}
+
+.winning-eq{
+    font-size: 1.25rem;
+}
+
+.equation {
+    padding-left: 10px;
+    font-size: 1.125rem;
+}
+
+.equation-maker {
+    display: flex;
+    justify-content: space-between;
+    width: 57%;
+    border: 2px solid #707070;
+    border-radius: 5px;
+    padding-bottom: 10px;
+}
+
+.number-cards {
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #468C98;
+    margin-bottom: 10px;
+    font-size: 1.65rem;
+    background-color: rgba(70, 140, 152, 0.6);
+    border-radius: 5px;
+    width: 60px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.disabled {
+    color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(70, 140, 152, 0.2);
+    cursor: default;
+}
+
+.operation-wrapper {
+    margin-top: 10px;
+}
+
+.user-equation {
+    display: flex;
+    border: 2px solid #707070;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    height: 60px;
+    width: 200px;
+}
+
+.user-equation>div {
+    margin-top: 2px;
+    margin-left: 5px;
+}
+
+
+.operations {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 5px;
+    row-gap: 10px;
+}
+
+.op-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #707070;
+    border-radius: 5px;
+    width: 95px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.user-equation-op {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #707070;
+    border-radius: 5px;
+}
+
+.equal-box {
+    width: 135px;
+}
+
+.bin-box {
+    width: 55px;
+    background-color: rgba(152, 68, 71, 0.6);
+    border: 2px solid #984447;
+}
+
+.bin-box svg g path {
+    fill: #661F21;
+}
