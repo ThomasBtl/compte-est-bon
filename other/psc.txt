@@ -1,0 +1,38 @@
+Function SOLUCE_FINDER(arr, number) return a node
+        nodes <- [{
+            elements : arr,
+            equations : []
+        }]
+        queue <- [nodes[0]]
+        temp_delta <- ABS(MAX(arr) - number)
+        operations <- [ADD, SUB, (a,b) => SUB(b,a), MULT, DIV, (a,b) => DIV(b,a)]
+        best_node <- nodes[0]
+        WHILE NOT EMPTY(queue) DO
+            node <- SHIFT(queue)
+            a <- SHIFT(node.elements)
+            FOR i <- 0 to LENGTH(node.elements) DO
+                b <- node.elements[i]
+                FOR ALL op in operations DO
+                    result, eq = op(a, b) // Return a result and the detail of the operation
+                    IF IS_INTEGER(result) and result > 0 THEN
+                        new_elements <- [all x of node.elements exept node.elements[i], result]
+                        new_equation <- [all x of node.equations, eq]
+                        new_node = {
+                            elements : new_elements,
+                            equations : new_equation
+                        }
+
+                        max_count <- MAX(new_elements)
+                        delta <- ABS(max_count - number)
+                        IF delta < temp_delta THEN
+                            temp_delta <- delta
+                            best_node <- new_node
+
+                        IF max_count = number THEN
+                            return new_node // This is the solution
+
+                        IF LENGTH(new_node.elements) > 1 THEN
+                            queue <- APPENDS(new_node, queue) // Add node at the end of queue
+    
+                        nodes <- APPENDS(node, nodes) // appening node to nodes
+        RETURN best_node

@@ -6,8 +6,11 @@
     <meta charset="utf-8" />
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <link href="./css/index.css" rel="stylesheet">
-    <script src="./javascript/game-logic.js"></script>
-    <script src="./javascript/user-interaction.js"></script>
+    <script type="module" src="./javascript//Operations.mjs"></script>
+    <script type="module" src="./javascript/Utils.mjs"></script>
+    <script type="module" src="./javascript/Memento.mjs"></script>
+    <script type="module" src="./javascript/Game.mjs"></script>
+    <script type="module" src="./javascript/user-interactions.mjs"></script>
 </head>
 
 <body>
@@ -22,7 +25,16 @@
             </div>
         </div>
         <div class="game-content">
-            <div class="equation-list">
+            <div class="equation-box">
+                <div class="undo-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                      </svg>
+                </div>
+                <div class="equation-list">
+
+                </div>
             </div>
             <div class="equation-maker">
                 <div class="number-cards">
@@ -30,35 +42,35 @@
                 <div class="operation-wrapper">
                     <div class="user-equation"></div>
                     <div class="operations">
-                        <div class="op-box" data-value="add">
+                        <div class="calc-box op-box" data-value="add">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
                                 <path id="plus-svg" data-name="plus-svg"
                                     d="M16.5,4a1.563,1.563,0,0,1,1.562,1.563v9.375h9.375a1.563,1.563,0,0,1,0,3.125H18.063v9.375a1.563,1.563,0,0,1-3.125,0V18.063H5.563a1.563,1.563,0,1,1,0-3.125h9.375V5.563A1.563,1.563,0,0,1,16.5,4Z"
                                     transform="translate(-4 -4)" />
                             </svg>
                         </div>
-                        <div class="op-box" data-value="sub">
+                        <div class="calc-box op-box" data-value="sub">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="3.125" viewBox="0 0 25 3.125">
                                 <path id="minus-svg" data-name="minus-svg"
                                     d="M4,9.063A1.563,1.563,0,0,1,5.563,7.5H27.437a1.563,1.563,0,1,1,0,3.125H5.563A1.563,1.563,0,0,1,4,9.063Z"
                                     transform="translate(-4 -7.5)" />
                             </svg>
                         </div>
-                        <div class="op-box" data-value="mult">
+                        <div class="calc-box op-box" data-value="mult">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
                                 <path id="mult-svg" data-name="mult-svg"
                                     d="M5.024,5.024a1.785,1.785,0,0,1,2.528,0L17,14.475l9.448-9.452a1.788,1.788,0,1,1,2.528,2.528L19.524,17l9.452,9.448a1.788,1.788,0,1,1-2.528,2.528L17,19.524,7.552,28.976a1.788,1.788,0,1,1-2.528-2.528L14.475,17,5.024,7.552a1.785,1.785,0,0,1,0-2.528Z"
                                     transform="translate(-4.499 -4.499)" />
                             </svg>
                         </div>
-                        <div class="op-box" data-value="div">
+                        <div class="calc-box op-box" data-value="div">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
                                 <path id="div-svg" data-name="div-svg"
                                     d="M28.975,5.024a1.785,1.785,0,0,1,0,2.528L7.551,28.976a1.788,1.788,0,1,1-2.528-2.528L26.447,5.024a1.785,1.785,0,0,1,2.528,0Z"
                                     transform="translate(-4.499 -4.499)" />
                             </svg>
                         </div>
-                        <div class="op-box equal-box" onclick="onEqualClick()">
+                        <div class="calc-box equal-box">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="12" viewBox="0 0 25 12">
                                 <g id="equals-svg" data-name="equals-svg" transform="translate(-1331.5 -529)">
                                     <path id="top-equal" data-name="top-equal"
@@ -70,7 +82,7 @@
                                 </g>
                             </svg>
                         </div>
-                        <div class="op-box bin-box">
+                        <div class="calc-box bin-box">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28.846" viewBox="0 0 25 28.846">
                                 <g id="bin-svg" data-name="bin-svg" transform="translate(-1.5)">
                                     <path id="out-bin" data-name="out-bin"
@@ -88,6 +100,7 @@
         </div>
     </div>
     <script>
+        /*
         var [rnd, numbers, equations] = getNewGame();
         // Add event listener on operations
         var operationWrappers = document.getElementsByClassName("op-box");
@@ -107,7 +120,13 @@
         document.getElementsByClassName('reset-button')[0].onclick = (e) => {
             [rnd, numbers, equations] = onGiveUp(e, equations)
         };
-        
+
+        // Bin button
+        document.getElementsByClassName('bin-box')[0].onclick = cleanEq;
+
+        // Undo
+        document.getElementsByClassName('undo-button')[0].onclick = undoEq;
+        */
     </script>
 </body>
 
