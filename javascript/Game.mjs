@@ -216,8 +216,8 @@ export class Game {
         const [r, eq] = Operations[op](a,b);
 
         // Is the result valid ?
-        if (r < 0 && r % 1 !== 0) {
-            return -1;
+        if (r < 0 || r % 1 !== 0) {
+            return [-1, undefined, undefined];
         }
 
         // Add equations to this.equations

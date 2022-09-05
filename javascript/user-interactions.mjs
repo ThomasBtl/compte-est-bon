@@ -12,6 +12,7 @@ var binElement = document.getElementsByClassName('bin-box')[0];
 var equalElement = document.getElementsByClassName('equal-box')[0];
 var resetButtonElement = document.getElementsByClassName('reset-button')[0];
 var undoButton = document.getElementsByClassName('undo-button')[0];
+var alertElement = document.getElementsByClassName('alert')[0];
 
 let [currentGame, caretaker] = reset();
 
@@ -78,6 +79,9 @@ function onRemoveEqElement(e, twin, from) {
 
 }
 
+/**
+ * Click on the bin button
+ */
 function onCleanEq() {
     // Remove from user-equation
     for (let child of [...userEquationElement.children]) {
@@ -142,6 +146,9 @@ function onEqualClick() {
         onCleanEq();
         
         caretaker.add(new Memento(previousState));
+    }
+    else{
+        popAlert(`Cette oération n'est pas valide. Seul les opérations donnant des résultats entiers et possitifs sont valides`, 'error')
     }
 }
 
@@ -214,6 +221,9 @@ function onUndoEq(){
             equationListElement.appendChild(eqElement)
         }
     }
+    else{
+        popAlert('Aucune équation précédemment éffectué','info');
+    }
 }
 
 //#endregion
@@ -276,7 +286,7 @@ function reset() {
     }
 
     for (let opBox of opElements) {
-        opBox.onclick = (e) => onCardClick(e, 1, 'user-equation-op');
+        opBox.onclick = (e) => onCardClick(e);
     }
 
     binElement.onclick = onCleanEq;
@@ -287,7 +297,26 @@ function reset() {
 
     undoButton.onclick = onUndoEq;
 
-    return [game, caretaker]
+    return [game, caretaker];
+}
+
+/**
+ * Open an alert window to display usefull information. Alert window is open for 8s
+ * @param {string} message The message to display
+ * @param {string} type The type of the message. Only 'error' and 'info' are accepted value 
+ */
+function popAlert(message, type){
+    if(type === 'error' || type === 'info'){
+        alertElement.innerHTML = `<p>${message}</p>`;
+        alertElement.classList.add(`${type}-alert`);
+        // Find a better way to do this. Multiple setTimeout call if eq button is pressed multiple times
+        setTimeout(
+            () => alertElement.classList.toggle(`${type}-alert`)
+        , 8000);
+    }
+    else{
+        throw `userInteraction - popAlert - ${type} is not valid alert type. Only 'error' and 'info' are accepted value`;
+    }
 }
 
 //#endregion

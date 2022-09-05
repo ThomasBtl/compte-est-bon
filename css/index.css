@@ -179,3 +179,41 @@ body {
 .bin-box svg g path {
     fill: #661F21;
 }
+
+.alert{
+    opacity: 0;
+    height: 30px;
+    overflow: hidden;
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0px solid transparent;
+    width: 250px;
+    width: 640px;
+    max-width: 640px;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: height 0.25s, bottom 0.25s, background-color 0s linear 0.25s, border 0s linear 0.25s, opacity 0.32s;
+    padding-left: 20px;
+}
+
+.error-alert{
+    opacity: 1;
+    background-color: rgba(152, 68, 71, 0.6);
+    border: 2px solid #661F21;
+    height: 70px;
+    bottom: 50px;
+    transition: height 0.25s, bottom 0.25s, opacity 0.32s;
+}
+
+.info-alert{
+    opacity: 1;
+    background-color: rgba(71, 108, 155, 0.6);
+    border: 2px solid #476C9B;
+    height: 50px;
+    bottom: 50px;
+    transition: height 0.25s, bottom 0.25s, opacity 0.32s;
+}
