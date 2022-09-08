@@ -12,7 +12,6 @@ var binElement = document.getElementsByClassName('bin-box')[0];
 var equalElement = document.getElementsByClassName('equal-box')[0];
 var resetButtonElement = document.getElementsByClassName('reset-button')[0];
 var undoButton = document.getElementsByClassName('undo-button')[0];
-var alertElement = document.getElementsByClassName('alert')[0];
 
 let [currentGame, caretaker] = reset();
 
@@ -133,22 +132,22 @@ function onEqualClick() {
         numberCardsElement.appendChild(newNumberCard);
 
         // Update number-cards
-        for(let child of [...numberCardsElement.children]){
+        for (let child of [...numberCardsElement.children]) {
             numberCardsElement.removeChild(child);
         }
 
-        for(let n of currentGame.cards){
+        for (let n of currentGame.cards) {
             let card = createNumberCard(n);
             numberCardsElement.appendChild(card);
         }
 
         // Remove elements from user-equation
         onCleanEq();
-        
+
         caretaker.add(new Memento(previousState));
     }
-    else{
-        popAlert(`Cette oération n'est pas valide. Seul les opérations donnant des résultats entiers et possitifs sont valides`, 'error')
+    else {
+        popAlert(`Opération invalide. Seul les opérations donnant des résultats ≥ 0 sont valides`, 'error')
     }
 }
 
@@ -156,7 +155,7 @@ function onGiveUp(e) {
     const element = e.currentTarget;
 
     // Remove element from equation-list
-    for (let child of [...equationListElement.children]){
+    for (let child of [...equationListElement.children]) {
         equationListElement.removeChild(child);
     }
 
@@ -173,7 +172,7 @@ function onGiveUp(e) {
     element.onclick = (e) => onResetGame(e);
 }
 
-function onResetGame(e){
+function onResetGame(e) {
     const element = e.currentTarget;
 
     // Remove all elements
@@ -194,35 +193,35 @@ function onResetGame(e){
     element.onclick = (e) => onGiveUp(e);
 }
 
-function onUndoEq(){
+function onUndoEq() {
     const previousState = caretaker.get();
 
-    if(previousState !== undefined){
+    if (previousState !== undefined) {
         currentGame.setState(previousState);
 
         // Redo number cards
-        for(let child of [...numberCardsElement.children]){
+        for (let child of [...numberCardsElement.children]) {
             numberCardsElement.removeChild(child);
         }
-    
-        for(let n of currentGame.cards){
+
+        for (let n of currentGame.cards) {
             let card = createNumberCard(n);
             numberCardsElement.appendChild(card);
         }
-    
+
         // Redo equation list
-        for(let child of [...equationListElement.children]){
+        for (let child of [...equationListElement.children]) {
             equationListElement.removeChild(child);
         }
-    
-        for(let eq of currentGame.equations){
+
+        for (let eq of currentGame.equations) {
             let eqElement = document.createElement('p');
             eqElement.innerHTML = eq;
             equationListElement.appendChild(eqElement)
         }
     }
-    else{
-        popAlert('Aucune équation précédemment éffectué','info');
+    else {
+        popAlert('Aucune équation précédemment éffectué', 'info');
     }
 }
 
@@ -233,7 +232,7 @@ function onUndoEq(){
 /**
  * Place en element in user-equation in the correct order
  * @param {HTMLElement} element The element to place
- * @param {string} type The type of the element to place ; either 'card' or 'op' [optional, default = 'card']
+ * @param {string} [type] The type of the element to place ; either 'card' or 'op' [optional, default = 'card']
  */
 function placeEqElement(element, type = 'card') {
     let firstChild = userEquationElement.children[0]
@@ -305,16 +304,46 @@ function reset() {
  * @param {string} message The message to display
  * @param {string} type The type of the message. Only 'error' and 'info' are accepted value 
  */
-function popAlert(message, type){
-    if(type === 'error' || type === 'info'){
-        alertElement.innerHTML = `<p>${message}</p>`;
-        alertElement.classList.add(`${type}-alert`);
-        // Find a better way to do this. Multiple setTimeout call if eq button is pressed multiple times
-        setTimeout(
-            () => alertElement.classList.toggle(`${type}-alert`)
-        , 8000);
+function popAlert(message, type) {
+    try{
+        const alertBox = document.getElementById('alert-box');
+        const alert = createAlert(message, type);
+        alertBox.appendChild(alert);
     }
-    else{
+    catch(e){
+        console.log(e)
+    }
+}
+
+/**
+ * Create and alert HTMLElement
+ * @param {string} message The message to display on the alert
+ * @param {string} type The type of alert to pop. Either 'info' or 'error'
+ * @throws Will throw an error if type is not valid
+ * @retunrs An HTMLElement corresponding to an alert box of type {type} with the message {message}
+ */
+function createAlert(message, type){
+    if (type === 'error' || type === 'info') {
+        // Create alert wrapper
+        let alertBox = document.createElement('div');
+        alertBox.classList.add('alert', `${type}-alert`, 'animated');
+
+        // Create alert content
+        let messageBox = document.createElement('p');
+        messageBox.innerHTML = `${message}`;
+
+        let exitAlertSpan = document.createElement('span');
+        exitAlertSpan.classList.add('quit-alert');
+        exitAlertSpan.addEventListener('click', () => {
+            alertBox.classList.toggle('animated');
+        });
+
+        alertBox.appendChild(messageBox);
+        alertBox.appendChild(exitAlertSpan);
+
+        return alertBox;
+    }
+    else {
         throw `userInteraction - popAlert - ${type} is not valid alert type. Only 'error' and 'info' are accepted value`;
     }
 }

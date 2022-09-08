@@ -63,8 +63,8 @@ export class Game {
          A queue is initialize with a first node containing all the cards that can be used to find a solution, and an empty array of equations
  
          The algorithm loop until the queue is empty or until a solution is found.
-         The exploration of a node consist of taking all element and using the different operations at hands to generate other nodes, these new node are added at the end of the queue.
-         If during this process, the exploration happens to get the number to find, then the current node is returned and no other nodes are being explored.
+         The exploration of a node consist of taking all element and using the different operations at hands to generate other nodes, these new nodes are added at the end of the queue.
+         If during this process, the exploration gives the number to find, then the current node is returned and no other nodes are being explored.
  
          If no node give the number to find then the best node is return. The best node is the one that has a value in node.element that is the closest to the number to find.
  

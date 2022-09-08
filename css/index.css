@@ -37,7 +37,7 @@ body {
     padding-left: 5px;
 }
 
-.reset-button{
+.reset-button {
     border: 2px solid #468C98;
     background-color: rgba(70, 140, 152, 0.6);
     padding: 0 20px;
@@ -72,11 +72,11 @@ body {
     cursor: pointer;
 }
 
-.undo-button svg path{
+.undo-button svg path {
     fill: #984447;
 }
 
-.winning-eq{
+.winning-eq {
     font-size: 1.25rem;
 }
 
@@ -180,40 +180,125 @@ body {
     fill: #661F21;
 }
 
-.alert{
-    opacity: 0;
-    height: 30px;
-    overflow: hidden;
+#alert-box {
     position: fixed;
-    bottom: 30px;
     left: 0;
     right: 0;
+    bottom: 30px;
+}
+
+@keyframes pop-alert {
+    from {
+        opacity: 0;
+        height: 0;
+        bottom: -10px;
+    }
+    to {
+        opacity: 1;
+        height: 50px;
+        bottom: 0;
+    }
+}
+
+@keyframes remove-alert {
+    from {
+        opacity: 1;
+        height: 50px;
+        bottom: 0;
+    }
+    to{
+        opacity: 0;
+        height: 0;
+        bottom: -10px;
+    }
+}
+
+.alert {
+    position: relative;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 5px;
     border: 0px solid transparent;
     width: 250px;
     width: 640px;
     max-width: 640px;
     border-radius: 5px;
     background-color: transparent;
-    transition: height 0.25s, bottom 0.25s, background-color 0s linear 0.25s, border 0s linear 0.25s, opacity 0.32s;
+    transition: background-color 0s linear 0.25s, border 0s linear 0.25s;
     padding-left: 20px;
+    animation: remove-alert 0.32s;
+    animation-fill-mode: forwards;
 }
 
-.error-alert{
+.alert:hover span{
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+
+.alert span {
+    opacity: 0;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: opacity 0.25s;
+}
+
+.alert span:after {
+    position: absolute;
+    top: 2px;
+    right: 9px;
+    display: block;
+    content: '';
+    width: 2px;
+    height: 15px;
+    border-radius: 30px;
+    transform: rotate(45deg);
+    background-color: black;
+}
+
+.alert span:before {
+    position: absolute;
+    display: block;
+    content: '';
+    top: 2px;
+    right: 9px;
+    width: 2px;
+    height: 15px;
+    border-radius: 30px;
+    transform: rotate(-45deg);
+    background-color: black;
+}
+
+
+.alert.animated {
+    animation: pop-alert 0.32s;
+    animation-fill-mode: forwards;
+}
+
+.error-alert {
     opacity: 1;
     background-color: rgba(152, 68, 71, 0.6);
     border: 2px solid #661F21;
-    height: 70px;
-    bottom: 50px;
-    transition: height 0.25s, bottom 0.25s, opacity 0.32s;
+    height: 50px;
 }
 
-.info-alert{
+.info-alert {
     opacity: 1;
-    background-color: rgba(71, 108, 155, 0.6);
+    background-color: rgba(145, 167, 195);
     border: 2px solid #476C9B;
     height: 50px;
-    bottom: 50px;
-    transition: height 0.25s, bottom 0.25s, opacity 0.32s;
 }
+
+.info-alert span:after, .info-alert span:before {
+    background-color:  #476C9B;
+}
+.error-alert span:after, .error-alert span:before {
+    background-color:  #661F21;
+}
+

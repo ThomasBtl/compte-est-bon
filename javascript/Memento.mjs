@@ -20,7 +20,7 @@ export class Memento{
     }
 
     /**
-     * Check if a state parameters is valid or not
+     * Check if a state parameters is valid or not. The state is type sensitif
      * @param {any} state The state parameter
      * @throw Will throw an error if the state is not correct
      * @returns {boolean} True if the state parameter is correct ; Throw en exception otherwise
