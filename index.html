@@ -17,6 +17,14 @@
         <div id="wrapper">
             <div class="title">
                 <p class="title-text">Le compte est bon !</p>
+                <div class="options-box">
+                    <div class="rules-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
             <div class="info">
                 <p>Essayer de trouver <span class="number-to-found"></span></p>
@@ -34,9 +42,7 @@
                                 d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
                         </svg>
                     </div>
-                    <div class="equation-list">
-
-                    </div>
+                    <div class="equation-list"></div>
                 </div>
                 <div class="equation-maker">
                     <div class="number-cards">
@@ -78,7 +84,7 @@
                                         <path id="top-equal" data-name="top-equal"
                                             d="M4,9.063A1.563,1.563,0,0,1,5.563,7.5H27.437a1.563,1.563,0,1,1,0,3.125H5.563A1.563,1.563,0,0,1,4,9.063Z"
                                             transform="translate(1327.5 521.5)" />
-                                        <path id="bottom-equal" data-name="Tracé 6"
+                                        <path id="bottom-equal" data-name="bottom-equal"
                                             d="M4,9.063A1.563,1.563,0,0,1,5.563,7.5H27.437a1.563,1.563,0,1,1,0,3.125H5.563A1.563,1.563,0,0,1,4,9.063Z"
                                             transform="translate(1327.5 530.375)" />
                                     </g>
@@ -102,6 +108,11 @@
             </div>
         </div>
         <div id="alert-box"></div>
+        <div id="dialog" class="close">
+            <h1 id="dialog-title"></h1>
+            <p id="dialog-content"></p>
+            <div id="dialog-confirm"></div>
+        </div>
     </body>
 
 

@@ -8,7 +8,12 @@ body {
     margin: 0 auto;
 }
 
+.backfont {
+    filter: blur(2px);
+}
+
 .title {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,6 +25,16 @@ body {
 
 .title-text {
     font-size: 2.25rem;
+}
+
+.options-box {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.rules-button {
+    cursor: pointer;
 }
 
 .info {
@@ -283,7 +298,7 @@ body {
 
 .error-alert {
     opacity: 1;
-    background-color: rgba(152, 68, 71, 0.6);
+    background-color: #c29092;
     border: 2px solid #661F21;
     height: 50px;
 }
@@ -302,3 +317,33 @@ body {
     background-color:  #661F21;
 }
 
+#dialog {
+    position: fixed;
+    width: 500px;
+    max-width: 500px;
+    padding: 5px 15px;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(145, 167, 195);
+    border: 2px solid #476C9B;
+    border-radius: 5px;
+}
+
+.close {
+    display: none;
+}
+
+#dialog-confirm {
+    display: inline-block;
+    background-color: #90bac1;
+    border: 2px solid #468c98;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: auto;
+    cursor: pointer;
+}

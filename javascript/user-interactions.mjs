@@ -1,8 +1,20 @@
 import { Game } from './Game.mjs';
 import { Memento, Caretaker } from './Memento.mjs';
 
+//#region const
+
+const rules = {
+    title : 'Régle du jeu',
+    content : 'Trouvez le nombre indiquer en utilisant les nombres à votre disposition. Pour ce faire vous disposez des quatres opérations élémentaires et des résultats de vos calculs intermédiaire. En cas de prise de tête trop importante, vous pouvez abandonner cette partie, une solution vous sera alors donnée. Rejouez étant de fois que vous voulez.\nBonne chance !',
+    buttonText : `Confirmer`
+}
+
+//#endregion
+
+
 //#region initialization
 
+var wrapperElement = document.getElementById('wrapper');
 var toFindElement = document.getElementsByClassName('number-to-found')[0];
 var numberCardsElement = document.getElementsByClassName('number-cards')[0];
 var userEquationElement = document.getElementsByClassName('user-equation')[0];
@@ -12,8 +24,18 @@ var binElement = document.getElementsByClassName('bin-box')[0];
 var equalElement = document.getElementsByClassName('equal-box')[0];
 var resetButtonElement = document.getElementsByClassName('reset-button')[0];
 var undoButton = document.getElementsByClassName('undo-button')[0];
+var rulesButton = document.getElementsByClassName('rules-button')[0];
+var dialogElement = document.getElementById('dialog');
+var confirmButton = document.getElementById('dialog-confirm');
 
 let [currentGame, caretaker] = reset();
+
+rulesButton.addEventListener('click', () => {
+    openRules();
+})
+
+confirmButton.addEventListener('click', toggleDialog)
+
 
 //#endregion
 
@@ -332,10 +354,24 @@ function createAlert(message, type){
         let messageBox = document.createElement('p');
         messageBox.innerHTML = `${message}`;
 
+        // Exit alert
+        function exitAlert(){
+            alertBox.classList.toggle('animated');
+            alertBox.addEventListener('animationend', () => {
+                removeAlert(alertBox);
+            })
+        }
+
+        // Exit alert after x ms
+        let ms = 8000;
+        const timeout = setTimeout(exitAlert, ms)
+
+        // Exit alert manualy
         let exitAlertSpan = document.createElement('span');
         exitAlertSpan.classList.add('quit-alert');
         exitAlertSpan.addEventListener('click', () => {
-            alertBox.classList.toggle('animated');
+            clearTimeout(timeout);
+            exitAlert();
         });
 
         alertBox.appendChild(messageBox);
@@ -346,6 +382,36 @@ function createAlert(message, type){
     else {
         throw `userInteraction - popAlert - ${type} is not valid alert type. Only 'error' and 'info' are accepted value`;
     }
+}
+
+function removeAlert(elem){
+    const alertBox = document.getElementById('alert-box');
+    alertBox.removeChild(elem);
+}
+
+/**
+ * Open the rules dialog with the correct text
+ */
+function openRules(){
+    // Get elements
+    let title = document.getElementById('dialog-title');
+    let content = document.getElementById('dialog-content');
+
+    // Fill elements
+    title.innerHTML = rules.title;
+    content.innerHTML = rules.content;
+    confirmButton.innerHTML = rules.buttonText;
+
+    // Open dialog
+    toggleDialog()
+}
+
+/**
+ * Toggle the dialog box
+ */
+function toggleDialog(){
+    dialogElement.classList.toggle('close');
+    wrapperElement.classList.toggle('backfont');
 }
 
 //#endregion
