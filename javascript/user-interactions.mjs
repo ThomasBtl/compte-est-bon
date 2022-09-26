@@ -1,5 +1,6 @@
 import { Game } from './Game.mjs';
 import { Memento, Caretaker } from './Memento.mjs';
+import { Stats } from './Stats.mjs';
 
 //#region const
 
@@ -25,6 +26,7 @@ var equalElement = document.getElementsByClassName('equal-box')[0];
 var resetButtonElement = document.getElementsByClassName('reset-button')[0];
 var undoButton = document.getElementsByClassName('undo-button')[0];
 var rulesButton = document.getElementsByClassName('rules-button')[0];
+var statsButton = document.getElementsByClassName('stats-button')[0];
 var dialogElement = document.getElementById('dialog');
 var confirmButton = document.getElementById('dialog-confirm');
 
@@ -34,8 +36,13 @@ rulesButton.addEventListener('click', () => {
     openRules();
 })
 
-confirmButton.addEventListener('click', toggleDialog)
+statsButton.addEventListener('click', () => {
+    openStats();
+})
 
+confirmButton.addEventListener('click', toggleDialog);
+
+Stats.initStats();
 
 //#endregion
 
@@ -135,6 +142,10 @@ function onEqualClick() {
     if (r !== -1) {
         // Is the number found
         if (found) {
+            // Add won game to statistics 
+            Stats.addGames(true);
+
+            // DOM modifications
             const resetButton = document.getElementsByClassName('reset-button')[0];
             resetButton.onclick = (e) => onResetGame(e);
             resetButton.classList.toggle('give-up');
@@ -192,6 +203,9 @@ function onGiveUp(e) {
     element.classList.toggle('give-up');
     element.innerHTML = '<p>Rejouer<p>'
     element.onclick = (e) => onResetGame(e);
+
+    // Add lose game to statistics
+    Stats.addGames(false);
 }
 
 function onResetGame(e) {
@@ -406,6 +420,20 @@ function openRules(){
     toggleDialog()
 }
 
+function openStats(){
+    // Get elements
+    let title = document.getElementById('dialog-title');
+    let content = document.getElementById('dialog-content');
+
+    // Fill elements
+    title.innerHTML = 'Stats';
+    content.innerHTML = `<p>Parties : ${Stats.nGames}</p><p>Gagnée : ${Stats.nWins}</p>`;
+    confirmButton.innerHTML = 'Fermer'
+
+    // Open dialog
+    toggleDialog()
+}
+
 /**
  * Toggle the dialog box
  */
@@ -413,5 +441,6 @@ function toggleDialog(){
     dialogElement.classList.toggle('close');
     wrapperElement.classList.toggle('backfont');
 }
+
 
 //#endregion

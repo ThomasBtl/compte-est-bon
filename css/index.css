@@ -28,12 +28,14 @@ body {
 }
 
 .options-box {
+    display: flex;
+    column-gap: 5px;
     position: absolute;
     right: 10px;
     top: 10px;
 }
 
-.rules-button {
+.options-box > div {
     cursor: pointer;
 }
 

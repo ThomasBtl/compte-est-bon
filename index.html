@@ -1,119 +1,133 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>Des chiffres</title>
-        <meta charset="utf-8" />
-        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-        <link href="./css/index.css" rel="stylesheet">
-        <script type="module" src="./javascript//Operations.mjs"></script>
-        <script type="module" src="./javascript/Utils.mjs"></script>
-        <script type="module" src="./javascript/Memento.mjs"></script>
-        <script type="module" src="./javascript/Game.mjs"></script>
-        <script type="module" src="./javascript/user-interactions.mjs"></script>
-    </head>
+<head>
+    <title>Des chiffres</title>
+    <meta charset="utf-8" />
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <link href="./css/index.css" rel="stylesheet">
+    <script type="module" src="./javascript//Operations.mjs"></script>
+    <script type="module" src="./javascript/Utils.mjs"></script>
+    <script type="module" src="./javascript/Memento.mjs"></script>
+    <script type="module" src="./javascript/Game.mjs"></script>
+    <script type="module" src="./javascript/Stats.mjs"></script>
+    <script type="module" src="./javascript/user-interactions.mjs"></script>
+</head>
 
-    <body>
-        <div id="wrapper">
-            <div class="title">
-                <p class="title-text">Le compte est bon !</p>
-                <div class="options-box">
-                    <div class="rules-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                        </svg>
-                    </div>
+<body>
+    <div id="wrapper">
+        <div class="title">
+            <p class="title-text">Le compte est bon !</p>
+            <div class="options-box">
+                <div class="stats-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-clipboard-data" viewBox="0 0 16 16">
+                        <path
+                            d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
+                        <path
+                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                        <path
+                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                    </svg>
+                </div>
+                <div class="rules-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                    </svg>
                 </div>
             </div>
-            <div class="info">
-                <p>Essayer de trouver <span class="number-to-found"></span></p>
-                <div class="reset-button give-up">
-                    <p>Abandonner</p>
-                </div>
+        </div>
+        <div class="info">
+            <p>Essayer de trouver <span class="number-to-found"></span></p>
+            <div class="reset-button give-up">
+                <p>Abandonner</p>
             </div>
-            <div class="game-content">
-                <div class="equation-box">
-                    <div class="undo-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                            class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
-                            <path
-                                d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
-                        </svg>
-                    </div>
-                    <div class="equation-list"></div>
+        </div>
+        <div class="game-content">
+            <div class="equation-box">
+                <div class="undo-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+                        <path
+                            d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+                    </svg>
                 </div>
-                <div class="equation-maker">
-                    <div class="number-cards">
-                    </div>
-                    <div class="operation-wrapper">
-                        <div class="user-equation"></div>
-                        <div class="operations">
-                            <div class="calc-box op-box" data-value="add">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
-                                    <path id="plus-svg" data-name="plus-svg"
-                                        d="M16.5,4a1.563,1.563,0,0,1,1.562,1.563v9.375h9.375a1.563,1.563,0,0,1,0,3.125H18.063v9.375a1.563,1.563,0,0,1-3.125,0V18.063H5.563a1.563,1.563,0,1,1,0-3.125h9.375V5.563A1.563,1.563,0,0,1,16.5,4Z"
-                                        transform="translate(-4 -4)" />
-                                </svg>
-                            </div>
-                            <div class="calc-box op-box" data-value="sub">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="3.125" viewBox="0 0 25 3.125">
-                                    <path id="minus-svg" data-name="minus-svg"
+                <div class="equation-list"></div>
+            </div>
+            <div class="equation-maker">
+                <div class="number-cards">
+                </div>
+                <div class="operation-wrapper">
+                    <div class="user-equation"></div>
+                    <div class="operations">
+                        <div class="calc-box op-box" data-value="add">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                <path id="plus-svg" data-name="plus-svg"
+                                    d="M16.5,4a1.563,1.563,0,0,1,1.562,1.563v9.375h9.375a1.563,1.563,0,0,1,0,3.125H18.063v9.375a1.563,1.563,0,0,1-3.125,0V18.063H5.563a1.563,1.563,0,1,1,0-3.125h9.375V5.563A1.563,1.563,0,0,1,16.5,4Z"
+                                    transform="translate(-4 -4)" />
+                            </svg>
+                        </div>
+                        <div class="calc-box op-box" data-value="sub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="3.125" viewBox="0 0 25 3.125">
+                                <path id="minus-svg" data-name="minus-svg"
+                                    d="M4,9.063A1.563,1.563,0,0,1,5.563,7.5H27.437a1.563,1.563,0,1,1,0,3.125H5.563A1.563,1.563,0,0,1,4,9.063Z"
+                                    transform="translate(-4 -7.5)" />
+                            </svg>
+                        </div>
+                        <div class="calc-box op-box" data-value="mult">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                <path id="mult-svg" data-name="mult-svg"
+                                    d="M5.024,5.024a1.785,1.785,0,0,1,2.528,0L17,14.475l9.448-9.452a1.788,1.788,0,1,1,2.528,2.528L19.524,17l9.452,9.448a1.788,1.788,0,1,1-2.528,2.528L17,19.524,7.552,28.976a1.788,1.788,0,1,1-2.528-2.528L14.475,17,5.024,7.552a1.785,1.785,0,0,1,0-2.528Z"
+                                    transform="translate(-4.499 -4.499)" />
+                            </svg>
+                        </div>
+                        <div class="calc-box op-box" data-value="div">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                <path id="div-svg" data-name="div-svg"
+                                    d="M28.975,5.024a1.785,1.785,0,0,1,0,2.528L7.551,28.976a1.788,1.788,0,1,1-2.528-2.528L26.447,5.024a1.785,1.785,0,0,1,2.528,0Z"
+                                    transform="translate(-4.499 -4.499)" />
+                            </svg>
+                        </div>
+                        <div class="calc-box equal-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="12" viewBox="0 0 25 12">
+                                <g id="equals-svg" data-name="equals-svg" transform="translate(-1331.5 -529)">
+                                    <path id="top-equal" data-name="top-equal"
                                         d="M4,9.063A1.563,1.563,0,0,1,5.563,7.5H27.437a1.563,1.563,0,1,1,0,3.125H5.563A1.563,1.563,0,0,1,4,9.063Z"
-                                        transform="translate(-4 -7.5)" />
-                                </svg>
-                            </div>
-                            <div class="calc-box op-box" data-value="mult">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
-                                    <path id="mult-svg" data-name="mult-svg"
-                                        d="M5.024,5.024a1.785,1.785,0,0,1,2.528,0L17,14.475l9.448-9.452a1.788,1.788,0,1,1,2.528,2.528L19.524,17l9.452,9.448a1.788,1.788,0,1,1-2.528,2.528L17,19.524,7.552,28.976a1.788,1.788,0,1,1-2.528-2.528L14.475,17,5.024,7.552a1.785,1.785,0,0,1,0-2.528Z"
-                                        transform="translate(-4.499 -4.499)" />
-                                </svg>
-                            </div>
-                            <div class="calc-box op-box" data-value="div">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
-                                    <path id="div-svg" data-name="div-svg"
-                                        d="M28.975,5.024a1.785,1.785,0,0,1,0,2.528L7.551,28.976a1.788,1.788,0,1,1-2.528-2.528L26.447,5.024a1.785,1.785,0,0,1,2.528,0Z"
-                                        transform="translate(-4.499 -4.499)" />
-                                </svg>
-                            </div>
-                            <div class="calc-box equal-box">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="12" viewBox="0 0 25 12">
-                                    <g id="equals-svg" data-name="equals-svg" transform="translate(-1331.5 -529)">
-                                        <path id="top-equal" data-name="top-equal"
-                                            d="M4,9.063A1.563,1.563,0,0,1,5.563,7.5H27.437a1.563,1.563,0,1,1,0,3.125H5.563A1.563,1.563,0,0,1,4,9.063Z"
-                                            transform="translate(1327.5 521.5)" />
-                                        <path id="bottom-equal" data-name="bottom-equal"
-                                            d="M4,9.063A1.563,1.563,0,0,1,5.563,7.5H27.437a1.563,1.563,0,1,1,0,3.125H5.563A1.563,1.563,0,0,1,4,9.063Z"
-                                            transform="translate(1327.5 530.375)" />
-                                    </g>
-                                </svg>
-                            </div>
-                            <div class="calc-box bin-box">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28.846" viewBox="0 0 25 28.846">
-                                    <g id="bin-svg" data-name="bin-svg" transform="translate(-1.5)">
-                                        <path id="out-bin" data-name="out-bin"
-                                            d="M5.5,5.5A.5.5,0,0,1,6,6v6a.5.5,0,0,1-1,0V6A.5.5,0,0,1,5.5,5.5ZM8,5.5a.5.5,0,0,1,.5.5v6a.5.5,0,0,1-1,0V6A.5.5,0,0,1,8,5.5ZM11,6a.5.5,0,0,0-1,0v6a.5.5,0,0,0,1,0Z"
-                                            transform="translate(6 9.519)" />
-                                        <path id="in-bin" data-name="in-bin"
-                                            d="M26.5,5.769a1.923,1.923,0,0,1-1.923,1.923h-.962V25a3.846,3.846,0,0,1-3.846,3.846H8.231A3.846,3.846,0,0,1,4.385,25V7.692H3.423A1.923,1.923,0,0,1,1.5,5.769V3.846A1.923,1.923,0,0,1,3.423,1.923h6.731A1.923,1.923,0,0,1,12.077,0h3.846a1.923,1.923,0,0,1,1.923,1.923h6.731A1.923,1.923,0,0,1,26.5,3.846ZM6.535,7.692l-.227.113V25a1.923,1.923,0,0,0,1.923,1.923H19.769A1.923,1.923,0,0,0,21.692,25V7.806l-.227-.113ZM3.423,5.769V3.846H24.577V5.769Z"
-                                            transform="translate(0 0)" fill-rule="evenodd" />
-                                    </g>
-                                </svg>
-                            </div>
+                                        transform="translate(1327.5 521.5)" />
+                                    <path id="bottom-equal" data-name="bottom-equal"
+                                        d="M4,9.063A1.563,1.563,0,0,1,5.563,7.5H27.437a1.563,1.563,0,1,1,0,3.125H5.563A1.563,1.563,0,0,1,4,9.063Z"
+                                        transform="translate(1327.5 530.375)" />
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="calc-box bin-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28.846" viewBox="0 0 25 28.846">
+                                <g id="bin-svg" data-name="bin-svg" transform="translate(-1.5)">
+                                    <path id="out-bin" data-name="out-bin"
+                                        d="M5.5,5.5A.5.5,0,0,1,6,6v6a.5.5,0,0,1-1,0V6A.5.5,0,0,1,5.5,5.5ZM8,5.5a.5.5,0,0,1,.5.5v6a.5.5,0,0,1-1,0V6A.5.5,0,0,1,8,5.5ZM11,6a.5.5,0,0,0-1,0v6a.5.5,0,0,0,1,0Z"
+                                        transform="translate(6 9.519)" />
+                                    <path id="in-bin" data-name="in-bin"
+                                        d="M26.5,5.769a1.923,1.923,0,0,1-1.923,1.923h-.962V25a3.846,3.846,0,0,1-3.846,3.846H8.231A3.846,3.846,0,0,1,4.385,25V7.692H3.423A1.923,1.923,0,0,1,1.5,5.769V3.846A1.923,1.923,0,0,1,3.423,1.923h6.731A1.923,1.923,0,0,1,12.077,0h3.846a1.923,1.923,0,0,1,1.923,1.923h6.731A1.923,1.923,0,0,1,26.5,3.846ZM6.535,7.692l-.227.113V25a1.923,1.923,0,0,0,1.923,1.923H19.769A1.923,1.923,0,0,0,21.692,25V7.806l-.227-.113ZM3.423,5.769V3.846H24.577V5.769Z"
+                                        transform="translate(0 0)" fill-rule="evenodd" />
+                                </g>
+                            </svg>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="alert-box"></div>
-        <div id="dialog" class="close">
-            <h1 id="dialog-title"></h1>
-            <p id="dialog-content"></p>
-            <div id="dialog-confirm"></div>
-        </div>
-    </body>
+    </div>
+    <div id="alert-box"></div>
+    <div id="dialog" class="close">
+        <h1 id="dialog-title"></h1>
+        <div id="dialog-content"></div>
+        <div id="dialog-confirm"></div>
+    </div>
+</body>
 
 
 </html>
