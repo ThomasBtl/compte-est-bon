@@ -377,7 +377,7 @@ function createAlert(message, type){
         }
 
         // Exit alert after x ms
-        let ms = 8000;
+        let ms = 3500;
         const timeout = setTimeout(exitAlert, ms)
 
         // Exit alert manualy

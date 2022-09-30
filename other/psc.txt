@@ -28,7 +28,7 @@ Function SOLUCE_FINDER(arr, number) return a node
                             temp_delta <- delta
                             best_node <- new_node
 
-                        IF max_count = number THEN
+                        IF result = number THEN
                             return new_node // This is the solution
 
                         IF LENGTH(new_node.elements) > 1 THEN

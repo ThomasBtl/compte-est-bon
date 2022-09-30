@@ -126,7 +126,7 @@ export class Game {
                             best_node = newNode;
                         }
 
-                        if (max_count === number) {
+                        if (result === number) {
                             return [number, newNode];
                         }
 
