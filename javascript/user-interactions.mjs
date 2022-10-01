@@ -6,7 +6,7 @@ import { Stats } from './Stats.mjs';
 
 const rules = {
     title : 'Régle du jeu',
-    content : 'Trouvez le nombre indiqué en utilisant les nombres à votre disposition. Pour ce faire, vous disposez des quatres opérations élémentaires et des résultats de vos calculs intermédiaires. En cas de prise de tête trop importante, vous pouvez abandonner cette partie, une solution vous sera alors donnée. Rejouez étant de fois que vous voulez.\nBonne chance !',
+    content : 'Trouvez le nombre indiqué en utilisant les nombres à votre disposition. Pour ce faire, vous disposez des 4 opérations élémentaires et des résultats de vos calculs intermédiaires. En cas de prise de tête trop importante, vous pouvez abandonner cette partie, une solution vous sera alors donnée. Rejouez autant de fois que vous voulez.\nBonne chance !',
     buttonText : `Confirmer`
 }
 
@@ -180,7 +180,7 @@ function onEqualClick() {
         caretaker.add(new Memento(previousState));
     }
     else {
-        popAlert(`Opération invalide. Seul les opérations donnant des résultats ≥ 0 sont valides`, 'error')
+        popAlert(`Opération invalide. Seules les opérations donnant des résultats ≥ 0 sont valides`, 'error')
     }
 }
 
@@ -257,7 +257,7 @@ function onUndoEq() {
         }
     }
     else {
-        popAlert('Aucune équation précédemment éffectué', 'info');
+        popAlert('Aucune équation précédemment éffectuée', 'info');
     }
 }
 
